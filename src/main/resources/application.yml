@@ -1,0 +1,40 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /netty/v1
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090/admin-server/v1
+        username: admin
+        password: admin
+  application:
+    name: netty-client
+  thymeleaf:
+    cache: false
+#  resources:
+#    static-locations: classpath:/static
+
+# 将 actuator 的所有接口都暴露给 admin 监控服务
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+remoteserver:
+  ip: 127.0.0.1
+  port: 8899
+
+logging:
+  level:
+    org.springframework: info
+    com.jyd: info
+    io.netty: info
+  file:
+    name: netty-client.log
+#    pattern:
+      # 日志高亮
+#      file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx'
